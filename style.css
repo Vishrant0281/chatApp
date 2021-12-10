@@ -1,12 +1,12 @@
 body {
-  padding: 0;
-  margin: 0;
+  padding: 10px;
+  margin: 10px;
   display: flex;
   justify-content: center;
 }
 #message-container {
   width: 80%;
-  max-width: 1200px;
+  max-width: 600px;
 }
 #message-container div {
   background-color: #CCC;
@@ -20,10 +20,16 @@ body {
   padding-bottom: 30px;
   bottom: 0;
   background-color: white;
-  max-width: 1200px;
+  max-width: 600px;
   width: 80%;
   display: flex;
 }
 #message-input {
   flex-grow: 1;
+  margin-right: 5px;
+  border-width: 3px;
+  border-color: #C4DCFF;
+}
+#send-button{
+  margin-left: 5px;
 }

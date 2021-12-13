@@ -1,6 +1,4 @@
-body {
-  padding: 10px;
-  margin: 10px;
+.container {
   display: flex;
   justify-content: center;
 }
@@ -26,10 +24,14 @@ body {
 }
 #message-input {
   flex-grow: 1;
-  margin-right: 5px;
+  margin-right: 3px;
   border-width: 3px;
   border-color: #C4DCFF;
+  border-radius: 20px;
 }
 #send-button{
-  margin-left: 5px;
+  margin-left: 3px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
 }

@@ -1,3 +1,3 @@
 # chatApp
 # using JavaScript, Socket.io, Local Storage
-# key is 1234
+# can use any key

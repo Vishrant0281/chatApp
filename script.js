@@ -1,6 +1,4 @@
-let pass,name
-const key = "1234"
-let uid=getHash(key) //convert key to hascode
+let pass, name, uid
 const socket = io('http://localhost:3000')
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
@@ -9,11 +7,12 @@ const messageInput = document.getElementById('message-input')
 
 // enter key and name
 do{
-  pass = prompt('Enter key')
-  if(pass==key){
+  pass = prompt('Enter key').trim()
+  if(pass != ''){
     enterChatRoom()
+    uid = getHash(pass) //convert key to hascode
   }else{
-    pass=''
+    pass = ''
   }
 }while(!pass)
 
@@ -32,12 +31,12 @@ socket.on('user-disconnected', name => {
 messageForm.addEventListener('submit', e => {
   e.preventDefault()
   const message = messageInput.value.trim()
-  if(message.length>0){
+  if(message.length > 0){
     appendMessage(`You: ${message}`)
     socket.emit('send-chat-message', message)
     sendMessage(message)
     messageInput.value = ''
-  }else{
+  }else {
     alert("!")
   }
 })
@@ -48,47 +47,41 @@ function appendMessage(message) {
   messageContainer.append(messageElement)
 }
 
-function enterChatRoom(){
-  do{
+function enterChatRoom() {
+  do {
     name = prompt('What is your name?')
-  }while(!name)
+  } while(!name)
   appendMessage('You joined')
-  socket.emit('new-user', name)
+  socket.emit('new-user' , name)
 }
 
 // get time function
-function dateTimeFunction(){
+function dateTimeFunction() {
   var today = new Date();
-  var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date+' '+time;
-  return dateTime
+  var date = today.getFullYear() + '-' + (today.getMonth()+1) + '-' + today.getDate()
+  var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
+  var dateTime = date + ' ' + time
+  return dateTime;
 }
-
 
 function sendMessage(message){
 
   var dateTime = dateTimeFunction()
-  let msg={
-  user:name,
-  message:message.trim(),
-  date:dateTime
-  }
+  const msg = {user:name, message: message.trim(), date: dateTime}
   
   // Storing data to lacal storage
-  let arr=[]
+  let arr = []
   var msg1 = localStorage.getItem(uid);
-  if(msg1==null){
-  arr[0]=msg
-  window.localStorage.setItem(uid,JSON.stringify(arr));
-  }
-  else{
-  msg1=JSON.parse(msg1)
-  for(let i=0; i<msg1.length; i++){
-    arr.push(msg1[i])  
-  }
-  arr.push(msg)
-  window.localStorage.setItem(uid,JSON.stringify(arr));
+  if(msg1 == null) {
+    arr[0] = msg
+    window.localStorage.setItem(uid,JSON.stringify(arr));
+  } else {
+    msg1 = JSON.parse(msg1)
+    for(let i = 0; i < msg1.length; i++) {
+      arr.push(msg1[i])  
+    }
+    arr.push(msg)
+    window.localStorage.setItem(uid,JSON.stringify(arr));
   }
 }
 
@@ -107,11 +100,9 @@ window.onload = function(){
   var reloading = localStorage.getItem(uid);
   if(reloading!=null){
     var reload = JSON.parse(reloading)
-    for(let i=0;i<reload.length;i++){
-      let msg2={
-        user:reload[i].user,
-        message:reload[i].message.trim()
-      }
+    let reloadLength = reload.length
+    for(let i=0; i < reloadLength; i++){
+      let msg2 = {user:reload[i].user, message:reload[i].message.trim()}
       //load user name and chat from LS
       if(name != msg2.user){
         appendMessage(`${msg2.user}: ${msg2.message}`)
@@ -121,3 +112,12 @@ window.onload = function(){
     }
   }
 }
+
+document.getElementById('leave-btn').addEventListener('click', () => {
+  if (confirm('Are you sure you want to leave the chatroom?')==true) {
+    window.location='./index.html'
+    event.preventDefault()
+  } else {
+    event.preventDefault()
+  }
+});

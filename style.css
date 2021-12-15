@@ -1,18 +1,23 @@
 .container {
+  margin-top: 10px;
   display: flex;
   justify-content: center;
 }
+
 #message-container {
   width: 80%;
   max-width: 600px;
 }
+
 #message-container div {
   background-color: #CCC;
   padding: 5px;
 }
+
 #message-container div:nth-child(2n) {
   background-color: #FFF;
 }
+
 #send-container {
   position: fixed;
   padding-bottom: 30px;
@@ -22,6 +27,7 @@
   width: 80%;
   display: flex;
 }
+
 #message-input {
   flex-grow: 1;
   margin-right: 3px;
@@ -29,6 +35,7 @@
   border-color: #C4DCFF;
   border-radius: 20px;
 }
+
 #send-button{
   margin-left: 3px;
   padding-left: 20px;

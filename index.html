@@ -19,11 +19,11 @@
 
   <body>
     <!------------ NavBar ------------>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-dark bg-dark  ">
       <div class="container-fluid">
         <a class="navbar-brand">ChatApp</a>
         <form class="d-flex">
-          <button class="btn btn-outline-primary btn-sm" id="leave-btn" type="submit">Leave Room</button>
+          <button class="btn btn-outline-light btn-sm" id="leave-btn" type="submit">Leave Room</button>
         </form>
       </div>
     </nav>
@@ -32,8 +32,8 @@
       <div id="message-container"></div>
       <!------------ Send Container ------------>
       <form id="send-container">
-        <input class="form-control" type="text" id="message-input">
-        <button class="btn btn-primary fa fa-paper-plane-o" type="submit" id="send-button">Send</button>
+        <input data-meteor-emoji="true" class="form-control form-dark" type="text" id="message-input">
+        <button class="btn btn-dark btn-sm" type="submit" id="send-button">Send</button>
       </form>
     </div>
   </body>

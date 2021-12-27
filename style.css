@@ -30,9 +30,9 @@
 
 #message-input {
   flex-grow: 1;
+  line-height: 15px;
   margin-right: 3px;
   border-width: 3px;
-  border-color: #C4DCFF;
   border-radius: 20px;
 }
 
@@ -40,5 +40,10 @@
   margin-left: 3px;
   padding-left: 20px;
   padding-right: 20px;
-  border-radius: 20px;
+  border-radius: 15px;
+}
+#send-button:hover{
+  background-color: #FFF;
+  color: #212529;
+  border: 2px solid #212529;
 }

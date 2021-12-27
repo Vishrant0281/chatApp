@@ -1,4 +1,4 @@
-let pass, name, uid
+var pass, name, uid
 const socket = io('http://localhost:3000')
 const messageContainer = document.getElementById('message-container')
 const messageForm = document.getElementById('send-container')
@@ -66,7 +66,7 @@ function dateTimeFunction() {
 
 function sendMessage(message){
 
-  var dateTime = dateTimeFunction()
+  let dateTime = dateTimeFunction()
   const msg = {user:name, message: message.trim(), date: dateTime}
   
   // Storing data to lacal storage
